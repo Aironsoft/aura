@@ -1,0 +1,89 @@
+{% extends "aura:templates/layout.jinja2" %}
+
+{% block content %}
+
+<div id="header">
+			
+	<div class="title">
+		<a href="/" class="title-link">АУРА</a>
+	</div>
+	<img class="logo" src="{{ request.static_url('aura:static/pyramid.png') }}"
+		alt="logo"/>
+
+	<hr/>
+			
+</div>
+	
+	
+<div class='blog'>
+
+	<div class="sub-title">
+		Блог
+	</div>
+	<hr width='40%'/>
+
+	<div class='Board'>
+		<table>
+			<tr>
+				<td width="100">
+					{% if author.avatar_id %}
+					<img class='icon' src="../{{ avatars.filter_by(id=author.avatar_id).first().image_name}}"/>
+					{% endif %}
+				</td>
+				<td class='Boardlabel' width="150">
+					<table>
+						<div class='entry-author'>
+							{% if author!="" %}
+								<a href="../user/{{author.id}}">{{ author.name }}</a>
+							{% else %}
+								<a href="../user/{{users.filter_by(id=entry.author_id).first().id}}">{{ users.filter_by(id=entry.author_id).first().name }}</a>
+							{% endif %}
+						</div>
+						<hr/>
+						<div class='entry-date'>{{ entry.created }}</div>
+					</table>
+				</td>
+				<td class='entry-title' >{{ entry.title }}</td>
+			</tr>
+
+		</table>
+
+		<hr/>
+		<div class='entry-text'>{{ entry.body }}</div>		
+		
+
+		<hr/>
+		<div >
+		
+			<table class='entry-date'>
+				<tr>
+					<td>
+						Created <strong title="{{ entry.created }}">
+							{{ entry.created_in_words }}
+						</strong> ago
+					</td>
+					<td>Изменено 
+						{{ entry.edited }}
+					</td>
+				</tr>
+			</table>
+		
+		</div>
+			
+	</div>
+
+	<p>
+		<a class='blog-link' href="{{ request.route_url('blog') }}">Назад</a>
+		
+		{% if request.authenticated_userid %}
+		
+		<a class='blog-link' href="{{ request.route_url('blog_action', action='edit',
+			_query={'id':entry.id}) }}">Редактировать</a>
+		<a class='blog-link' href="{{request.route_url('blog_action', action='delete',
+			_query=(('id',entry.id),))}}">Удалить</a>
+			
+		{% endif %}
+	</p>
+
+</div>
+{% endblock %}

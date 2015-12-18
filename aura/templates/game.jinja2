@@ -1,0 +1,156 @@
+{% extends "aura:templates/layout.jinja2" %}
+
+{% block content %}
+
+    <script type="text/javascript" src="static/scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="static/scripts/require.js"></script>
+	<script type="text/javascript" src="static/scripts/main.js"></script>
+
+<link href="{{ request.static_url('aura:static/game.css') }}"
+	  rel="stylesheet">
+
+
+<div class="game">
+			
+			<div id="content">
+			</div>
+
+			<div id="timerBoard" class="timerBoard">
+				00:40:00
+			</div>
+			
+			<div>
+				<button id='btStart' class='btStart'>Начать!</button>
+				<button id='btStop' class='btStop'>Сбросить</button>
+				
+				<div class='Scoreboard'>
+					<div class='Boardlabel'>Лучшие результаты:</div>
+					<table class='BoardTable'>
+						{% for s in scores %}
+						<tr>
+							<td>{{ s.result }}</td>
+							<td width="150">
+								<a href="../user/{{winners.filter_by(id=s.user_id).first().id}}">
+									{{ winners.filter_by(id=s.user_id).first().name }}
+								</a>
+							</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
+				
+				
+				<div class ="Cards">
+				<div>
+				<td>
+				<img id="0-0" class="card"/>
+				</td>
+				<td>
+				<img id="0-1" class="card"/>
+				</td>	<td>
+		<img id="0-2" class="card"/>
+	</td>
+	<td>
+		<img id="0-3" class="card"/>
+	</td>
+</div>
+<div>
+	<td>
+		<img id="1-0" class="card"/>
+	</td>
+	<td>
+		<img id="1-1" class="card"/>
+	</td>
+	<td>
+		<img id="1-2" class="card"/>
+	</td>
+	<td>
+		<img id="1-3" class="card"/>
+	</td>
+</div>
+<div>
+	<td>
+		<img id="2-0" class="card"/>
+	</td>
+	<td>
+		<img id="2-1" class="card"/>
+	</td>
+	<td>
+		<img id="2-2" class="card"/>
+	</td>
+	<td>
+		<img id="2-3" class="card"/>
+	</td>
+</div>
+<div>
+	<td>
+		<img id="3-0" class="card"/>
+	</td>
+	<td>
+		<img id="3-1" class="card"/>
+	</td>
+	<td>
+		<img id="3-2" class="card"/>
+	</td>
+	<td>
+		<img id="3-3" class="card"/>
+	</td>
+</div>
+</div>
+
+<div class="pos0-0">
+	<img id="b0-0" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos0-1">
+	<img id="b0-1" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos0-2">
+	<img id="b0-2" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos0-3">
+	<img id="b0-3" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos1-0">
+	<img id="b1-0" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos1-1">
+	<img id="b1-1" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos1-2">
+	<img id="b1-2" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos1-3">
+	<img id="b1-3" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos2-0">
+	<img id="b2-0" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos2-1">
+	<img id="b2-1" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos2-2">
+	<img id="b2-2" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos2-3">
+	<img id="b2-3" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos3-0">
+	<img id="b3-0" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos3-1">
+	<img id="b3-1" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos3-2">
+	<img id="b3-2" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+<div class="pos3-3">
+	<img id="b3-3" src="static/images/game/Back.jpg"  class="back"/>
+</div>
+
+		
+			</div>
+			
+		</div>
+
+		
+{% endblock %}

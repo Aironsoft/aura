@@ -1,0 +1,74 @@
+{% extends "aura:templates/layout.jinja2" %}
+
+{% block content %}
+
+<div id="header">
+			
+		<div class="title">
+			<a href="/" class="title-link">АУРА</a>
+		</div>
+		<img class="logo" src="{{ request.static_url('aura:static/pyramid.png') }}"
+			alt="logo"/>
+			
+		<hr/>
+			
+	</div>
+	
+	
+	<div class='blog'>
+	
+	<div class="sub-title">
+		Блог
+	</div>
+	<hr width='40%'/>
+	
+	<div class='Board'>
+	
+<form action="{{request.route_url('blog_action',action=action)}}" method="post" class="form">
+    {% if action =='edit' %}
+        {{ form.id() }}
+    {% endif %}
+
+    {% for error in form.title.errors %}
+        <div class="error">{{ error }}</div>
+    {% endfor %}
+	
+	<table class='BoardTable'>
+		<tr>
+			<td class='Boardlabel' width="100">
+				<label for="title">{{ form.title.label }}</label>
+			</td>
+			<td>				
+        		{{ form.title(class_='form-control') }}
+			</td>
+		</tr>
+		<tr>
+			<td class='Boardlabel' width="100">
+				<label for="body">{{ form.body.label }}</label>
+			</td>
+			<td>
+				{{ form.body(class_='form-control') }}
+			</td>
+		</tr>
+	</table>
+	
+
+    {% for error in form.body.errors %}
+        <div class="error">{{ error }}</div>
+    {% endfor %}
+
+    <div class='Boardlabel'>
+        <button type="submit" class="btn btn-default">Подтвердить</button>
+    </div>
+
+
+</form>
+
+</div>
+
+<p><a class='blog-link' href="{{ request.route_url('home') }}">Назад</a></p>
+
+
+	</div>
+
+{% endblock %}

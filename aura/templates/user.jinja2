@@ -1,0 +1,113 @@
+{% extends "aura:templates/layout.jinja2" %}
+
+{% block content %}
+
+<div id="header">
+			
+	<div class="title">
+		<a href="/" class="title-link">АУРА</a>
+	</div>
+	<img class="logo" src="{{ request.static_url('aura:static/pyramid.png') }}"
+		alt="logo"/>
+
+	<hr/>
+			
+</div>
+	
+	
+<div class='blog'>
+
+	<div class="sub-title">
+		Пользователь
+	</div>
+	<hr width='40%'/>
+
+	<div class='Board'>
+		<table>
+			<tr>
+				<td width="100">
+					{% if user.avatar_id %}
+					<img class='avatar' src="../{{ avatars.filter_by(id=user.avatar_id).first().image_name}}"/>
+					{% endif %}
+				</td>
+				<td class='Boardlabel'>
+					<table>
+						<div class='entry-author'>
+							{% if user!="" %}
+								<a href="../user/{{user.id}}">{{ user.name }}</a>
+							{% else %}
+								<a href="../user/{{users.id}}">{{ user.name }}</a>
+							{% endif %}
+						</div>
+						<hr/>
+						<div class='entry-date'>
+							<table>
+								<tr>
+									<td>
+										Зарегистрирован:
+										<strong title="">
+											{{ user.registrated }}
+										</strong>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Последний вход:
+										{{ user.last_logged }}
+									</td>
+								</tr>
+							</table>
+						</div>
+					</table>
+				</td>
+			</tr>
+
+		</table>
+
+		<hr/>	
+		
+		{% if paginator.items %}
+			<table class='BoardTable'>
+				<tr>
+					<td class='Boardlabel'>
+						Записи пользователя
+					</td>
+				</tr>
+			</table>
+			<table class='BoardTable'>
+				{% for entry in paginator.items %}
+				<ui>
+					<li>
+					<a class='blog-entrie' href="{{ request.route_url('blog_entry', id=entry.id, slug=entry.slug) }}">
+						{{ entry.title }}
+					</a>
+					</li>
+				</ui>
+				{% endfor %}
+				
+				<hr width='50vmin'/>
+				
+				<div class='Pager'>
+					{{ paginator.pager() |safe }}
+				</div>
+
+			</table>
+			
+			{% else %}
+
+			<table class='BoardTable'>
+				<tr>
+					<td class='Boardlabel'>
+					У пользователя нет записей
+					</td>
+				</tr>
+			</table>
+		
+		{% endif %}
+
+		<hr/>
+			
+	</div>
+
+</div>
+{% endblock %}

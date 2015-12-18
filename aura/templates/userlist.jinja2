@@ -1,0 +1,53 @@
+{% extends "aura:templates/layout.jinja2" %}
+
+{% block content %}
+
+<link href="{{ request.static_url('aura:static/users.css') }}"
+	  rel="stylesheet">
+
+<div id="header">
+			
+		<div class="title">
+			<a href="/" class="title-link">АУРА</a>
+		</div>
+		<img class="logo" src="{{ request.static_url('aura:static/pyramid.png') }}"
+			alt="logo"/>
+			
+		<hr/>
+			
+	</div>
+
+<div class="users">
+	<div class="sub-title">Пользователи</div>
+		<hr width='40%'/>
+			<div class='Board'>			
+				<table class='BoardTable'>
+					<tr>
+						<td class='Boardlabel' width="100">ID</td>
+						<td class='Boardlabel' width="100">Аватар</td>
+						<td class='Boardlabel' width="150">Логин</td>
+						<td class='Boardlabel' width="150">Пароль</td>
+					</tr>
+				</table>
+				<table class='BoardTable'>
+					{% for u in users %}
+					<tr class='BoardTable'>
+						<td width="100">{{ u.id }}</td>
+						<td width="100">
+							<img class='icon' src="{{ avatars.filter_by(id=u.avatar_id).first().image_name}}"/>
+						</td>
+						<td width="150">
+							<a href="/user/{{u.id}}">
+								{{ u.name }}
+							</a>
+						</td>
+						<td width="150">{{ u.password }}</td>
+					</tr>
+					</a>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+
+		
+{% endblock %}

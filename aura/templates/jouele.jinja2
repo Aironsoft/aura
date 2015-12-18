@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Jouele demo</title>
+
+    <!-- Dependencies -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="static/scripts/jouele/jquery.jplayer.min.js"></script>
+    <!-- Jouele -->
+    <script type="text/javascript" src="static/scripts/jouele/jouele.js"></script>
+    <link href="static/scripts/jouele/jouele.css" rel="stylesheet"/>
+	
+	
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script type="text/javascript" src="static/scripts/speakker/speakker-big-1.2.38r332.min.js"></script>
+	<script type="text/javascript">
+$(document).ready(function() {
+projekktor('.speakker'); 
+});
+            </script>
+	
+	
+</head>
+<body>
+
+    <style>
+        html, body { margin: 0; padding: 0; background: #fff; font-family: "Helvetica", "Arial", sans-serif; font-size: 14px; line-height: 1.2; color: #000; }
+        .wrapper-line { padding: 50px; }
+        .wrapper-line_black { background: #20242b; color: #909a9c; }
+        .wrapper-header { font-size: 1.4em; line-height: 1.3; font-weight: 400; padding: 0; margin: 0 0 0.75em; }
+    </style>
+	
+	<div class="wrapper">
+	<audio class="speakker dark">
+<!--Путь к плейлисту либо к mp3 или ogg файлу-->
+            <source src='static/music/' type="application/json"/>
+            </audio>
+	</div>
+	
+
+    
+
+</body>
+</html>

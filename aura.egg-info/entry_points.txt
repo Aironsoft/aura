@@ -1,0 +1,5 @@
+      [paste.app_factory]
+      main = aura:main
+      [console_scripts]
+      initialize_aura_db = aura.scripts.initializedb:main
+      

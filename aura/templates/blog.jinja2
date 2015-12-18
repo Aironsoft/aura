@@ -1,0 +1,79 @@
+{% extends "aura:templates/layout.jinja2" %}
+
+
+{% block content %}
+
+    <div id="header">
+			
+		<div class="title">
+			<a href="/" class="title-link">АУРА</a>
+		</div>
+		<img class="logo" src="{{ request.static_url('aura:static/pyramid.png') }}"
+			alt="logo"/>
+			
+		<hr/>
+			
+	</div>
+	
+	
+	<div class='blog'>
+		
+		<div class="sub-title">
+			Блог
+		</div>
+		<hr width='40%'/>
+
+		<div class='Board'>
+		{% if paginator.items %}
+			<table class='BoardTable'>
+				<tr>
+					<td class='Boardlabel'>
+						Записи
+					</td>
+				</tr>
+			</table>
+			
+			<table class='BoardTable'>
+			<ui>
+			{% for entry in paginator.items %}
+				<li>
+				<a class='blog-entrie' href="{{ request.route_url('blog_entry', id=entry.id, slug=entry.slug) }}">
+					{{ entry.title }}
+				</a>
+				</li>
+				<p/>
+			{% endfor %}
+			</ui>
+			
+			<hr width='50vmin'/>
+			
+			<div class='Pager'>
+			{{ paginator.pager() |safe }}
+			</div>
+			
+			</table>
+
+		{% else %}
+
+			<table class='BoardTable'>
+				<tr>
+					<td class='Boardlabel'>
+					Записей в блоге не найдено
+					</td>
+				</tr>
+			</table>
+
+		{% endif %}
+		</div>
+		
+		{% if request.authenticated_userid %}
+		<p>
+			<a class='blog-link' href="{{ request.route_url('blog_action',action='create') }}">
+				Cоздать новую запись
+			</a>
+		</p>
+		{% endif %}
+		
+	</div>
+
+{% endblock %}

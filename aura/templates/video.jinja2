@@ -1,0 +1,70 @@
+{% extends "aura:templates/layout.jinja2" %}
+
+{% block content %}
+
+<link href="{{ request.static_url('aura:static/gallery.css') }}"
+	  rel="stylesheet">
+
+<div id="header">			
+	<div class="title">
+		<a href="/" class="title-link">АУРА</a>
+	</div>
+	<img class="logo" src="{{ request.static_url('aura:static/pyramid.png') }}"
+		alt="logo"/>
+
+	<hr/>
+</div>
+
+<div class='blog'>
+
+	<div class="sub-title">
+		Видео
+	</div>
+	<hr width='40%'/>
+	
+	<div class='mainpage'>
+	{% if paginator.items %}
+
+		<table class='BoardTable'>
+			<ui>
+			{% for video in paginator.items %}
+				<li>
+					<iframe width="640" height="360" src="{{video.url}}" frameborder="0" allowfullscreen>
+					</iframe>
+					<div class="video-name">
+						{{video.name}}
+					</div>				
+					<p/>
+				</li>				
+			{% endfor %}
+			</ui>
+			
+			<hr width='50vmin'/>
+			
+			<div class='Pager'>
+			{{ paginator.pager() |safe }}
+			</div>
+			
+		</table>	
+
+
+	
+
+	<!-- <div class="arrows">
+		<div class="arr-prev">
+			<button type="submit">
+				<img src="static/images/arr-prev.png"/>
+			</button>
+		</div>
+		<div class="arr-next">
+			<button type="submit">
+				<img src="static/images/arr-next.png"/>
+			</button>
+		</div>
+	</div> -->
+		
+	{% endif %}
+	
+</div>
+		
+{% endblock %}

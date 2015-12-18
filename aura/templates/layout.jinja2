@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Аура</title>
+</head>
+<!-- Bootstrap core CSS -->
+<link href="{{ request.static_url('aura:static/theme.css') }}"
+      rel="stylesheet">
+
+
+<body>
+	{% include 'menu.jinja2' %}
+	
+	<div id="wrapper" style="width: 90%">
+		
+		
+			
+		{% block content %}Empty{% endblock %}
+	
+    </div>
+
+	
+			
+	{% include 'footer.jinja2' %}
+
+	
+</body>
+</html>

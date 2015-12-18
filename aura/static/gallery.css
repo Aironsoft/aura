@@ -1,0 +1,29 @@
+.imageContainer {
+    height: 70vmin;
+    display: inline-table;
+    /*background: black;*/
+}
+
+.FlashlightEnabledImage {
+    position: relative;
+    max-width: 100%;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.FlashlightEnabledImage>.heightContainer>img {
+    max-height: 67vmin;
+    width: inherit;
+    height: initial;
+    margin: 0 auto;
+    box-shadow: 5px 0 15px #000;
+}
+
+.heightContainer {
+    margin: 0 auto;
+}
+
+.arrows {
+    display: inline-flex;
+    position: relative;
+}

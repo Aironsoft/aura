@@ -1,0 +1,56 @@
+{% extends "aura:templates/layout.jinja2" %}
+
+{% block content %}
+
+<link href="static/music.css" rel="stylesheet"/>
+	  
+<script type="text/javascript" src="static/scripts/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="static/scripts/jouele/jquery.jplayer.min.js"></script>
+<!-- Jouele -->
+<script type="text/javascript" src="static/scripts/jouele/jouele.js"></script>
+<link href="static/scripts/jouele/jouele.css" rel="stylesheet"/>
+
+
+<div id="header">			
+	<div class="title">
+		<a href="/" class="title-link">АУРА</a>
+	</div>
+	<img class="logo" src="{{ request.static_url('aura:static/pyramid.png') }}"
+		alt="logo"/>
+
+	<hr/>
+</div>
+
+<div class='blog'>
+
+	<div class="sub-title">
+		Музыка
+	</div>
+	<hr width='40%'/>
+	
+	
+	<div class='mainpage'>
+		
+		
+		{% if musics %}
+		
+			{% for music in musics %}
+			
+				<div class="wrapper-line wrapper-line_black">
+					<a href="{{music.url}}"
+							class="jouele jouele-skin-dark">
+						{{music.name}}
+					</a>
+				</div>
+			
+			{% endfor %}		
+		
+		{% endif %}
+		
+
+	</div>
+
+	
+</div>
+		
+{% endblock %}

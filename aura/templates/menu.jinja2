@@ -1,0 +1,116 @@
+{% block menu %}
+
+<div id="top_menu">
+		<div id="main_menu">
+			<ul class="dropmenu sf-js-enabled sf-shadow" id="menu_nav">
+				<li>
+					<a ui-sref="app.home.recommended" href="/" class="firstlevel logo" >
+						<img class="logo" src="{{request.static_url('aura:static/images/aura.bmp')}}"/>
+					</a>
+				</li>
+				<li id="button_2">
+					<a class="firstlevel" href="/blog" target="_self">
+						<span class="last firstlevel">Блог</span>
+					</a>
+				</li>
+				<li id="button_2">
+					<a class="firstlevel" href="/video" target="_self">
+						<span class="last firstlevel">Видео</span>
+					</a>
+				</li>
+				<li id="button_2">
+					<a class="firstlevel" href="/music" target="_self">
+						<span class="last firstlevel">Музыка</span>
+					</a>
+				</li>
+				<!-- <li id="button_2">
+					<a class="firstlevel" href="/jouele" target="_self">
+						<span class="last firstlevel">Жоэль</span>
+					</a>
+				</li> -->
+				<li id="button_33">
+					<a class="firstlevel" href="/gallery" target="_self">
+						<span class="last firstlevel">Галерея</span>
+					</a>
+					<ul style="display: none; visibility: hidden;">
+						<li>
+							<a href="/" target="_self">
+								<span class="last">Мая галерея</span>
+							</a>
+						</li>
+						<li>
+							<a href="/" target="_self">
+								<span class="last">Загрузка изображений</span>
+							</a>
+						</li>
+						<li>
+							<a href="/" target="_self">
+								<span class="last">Активные галереи</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li id="button_3">
+					<a class="firstlevel" href="/" target="_self">
+						<span class="last firstlevel">Поиск</span>
+					</a>
+				</li>
+				<li id="button_8" class="">
+					<a class="firstlevel" href="/game" target="_self">
+						<span class="last firstlevel">Игра</span>
+					</a>
+					<ul style="visibility: hidden; display: none;">
+						<li>
+							<a href="/" target="_self">
+								<span class="last">Просмотр календаря</span>
+							</a>
+						</li>
+						<li>
+							<a href="/" target="_self">
+								<span class="last">Добавить событие</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li id="button_2">
+					<a class="firstlevel" href="/userlist" target="_self">
+						<span class="last firstlevel">Пользователи</span>
+					</a>
+				</li>				
+				{% if request.authenticated_userid %}
+				<li id="button_11">
+					<a class="firstlevel" href="/admin" target="_self">
+						<span class="last firstlevel">Админка</span>
+					</a>
+				</li>
+				<li id="button_11">
+					<a class="firstlevel" href="{{request.route_url('user',id='me')}}">
+						<span class="last firstlevel bold">{{request.authenticated_userid}}</span>
+					</a>
+				</li>
+				<li id="button_11">
+					<a class="firstlevel" href="{{request.route_url('auth',action='out')}}">
+						<span class="last firstlevel">Выход</span>
+					</a>
+				</li>
+				{% else %}
+				<li>
+					<form action="{{request.route_url('auth',action='in')}}" method="post"
+						  class="login">
+							<label>User</label>
+							<input type="text" name="username" class="input-menu"/>
+							<label>Password</label>
+							<input type="password" name="password" class="input-menu"/>
+							<input type="submit" value="Войти" class="btn"/>
+					</form>
+				</li>
+				<li>
+					<a class="firstlevel" href="/registration" target="_self">
+						<span class="last firstlevel">Регистрация</span>
+					</a>
+				</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+{% endblock %}

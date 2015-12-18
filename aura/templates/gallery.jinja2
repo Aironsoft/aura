@@ -1,0 +1,52 @@
+{% extends "aura:templates/layout.jinja2" %}
+
+{% block content %}
+
+
+<link href="{{ request.static_url('aura:static/gallery.css') }}" rel="stylesheet">
+
+<script type="text/javascript" src="static/scripts/soundmanager2.js"></script>
+
+
+{% if paginator.items %}
+
+{% for image in paginator.items %}
+
+<div class="imageContainer">
+	<div class="FlashlightEnabledImage Module">
+		<div class="heightContainer">
+			<img src="{{image.image_name}}" 
+						class="pinImage rounded" data-load-state="pending" alt="{{image.name}}"/>
+		</div>
+	</div>
+</div>
+
+<div class="Boardlabel">
+	{{image.name}}
+</div>
+
+<!-- <div class="arrows">
+	<div class="arr-prev">
+		<button type="submit">
+			<img src="static/images/arr-prev.png"/>
+		</button>
+	</div>
+	<div class="arr-next">
+		<button type="submit">
+			<img src="static/images/arr-next.png"/>
+		</button>
+	</div>
+</div> -->
+
+
+{% endfor %}
+
+
+
+<div class='Pager'>
+	{{ paginator.pager() |safe }}
+</div>
+		
+{% endif %}
+		
+{% endblock %}

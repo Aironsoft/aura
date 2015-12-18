@@ -1,0 +1,172 @@
+{% extends "aura:templates/layout.jinja2" %}
+
+
+{% block content %}
+
+<link href="static/music.css" rel="stylesheet"/>
+	  
+<script type="text/javascript" src="static/scripts/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="static/scripts/jouele/jquery.jplayer.min.js"></script>
+<!-- Jouele -->
+<script type="text/javascript" src="static/scripts/jouele/jouele.js"></script>
+<link href="static/scripts/jouele/jouele.css" rel="stylesheet"/>
+
+
+
+    <div id="header">
+			
+		<div class="title">
+			<a href="/" class="title-link">АУРА</a>
+		</div>
+		<img class="logo" src="{{ request.static_url('aura:static/pyramid.png') }}"
+			alt="logo"/>
+			
+		<hr/>
+			
+	</div>
+	
+	
+	<div class='mainpage'>
+	
+		<hr width='40%'/>
+		
+		<table class='mainpage'>
+			<tr>
+				<td class='side-column'>	
+				
+					{% if best_gamer %}
+					<div class='widget'>
+						<div class='Board'>
+							<table class='BoardTable'>
+								<tr>
+									<td class='Boardlabel'>
+										Лучший игрок
+									</td>
+								</tr>
+							</table>
+							<table class='BoardTable'>
+								<a class='blog-entrie' href="/user/{{best_gamer.id}}">
+									{{ best_gamer.name }}
+								</a>
+							</table>
+						</div>
+					</div>
+					{% endif %}
+					
+					<div class='widget'>
+						<div class='Board'>
+							<table class='BoardTable'>
+								<tr>
+									<td class='Boardlabel'>
+										Последний зарегистрированный пользователь
+									</td>
+								</tr>
+							</table>
+							<table class='BoardTable'>
+								<a class='blog-entrie' href="/user/{{last_user.id}}">
+									{{ last_user.name }}
+								</a>
+							</table>
+						</div>
+					</div>
+				</td>
+				<td class='central-column'>
+				
+					{% if entries %}
+					<div class='widget'>
+						<div class='Board'>
+							<table class='BoardTable'>
+								<tr>
+									<td class='Boardlabel'>
+										Последние записи в блоге
+									</td>
+								</tr>
+							</table>
+							<table class='BoardTable'>
+								<ui>
+								{% for entry in entries %}
+									<li>
+									<a class='blog-entrie' href="{{ request.route_url('blog_entry', id=entry.id, slug=entry.slug) }}">
+										{{ entry.title }}
+									</a>
+									</li>
+									<p/>
+								{% endfor %}
+								</ui>
+							</table>
+						</div>
+					</div>
+					{% endif %}
+					
+				</td>				
+				<td class='side-column'>
+				
+					{% if rand_image %}
+					<div class='widget'>
+						<div class='Board'>
+							<table class='BoardTable'>
+								<tr>
+									<td class='Boardlabel'>
+										Случайное изображение
+									</td>
+								</tr>
+							</table>
+							<table class='BoardTable'>
+								<a class='blog-entrie' href="/gallery">  <!-- href="/gallery/{{rand_image.id}} -->
+									<img class="avatar" src="{{rand_image.image_name}}" data-pin-nopin="true">
+								</a>
+							</table>
+						</div>
+					</div>
+					{% endif %}
+					
+					{% if rand_music %}
+					<div class='widget'>
+						<div class='Board'>
+							<table class='BoardTable'>
+								<tr>
+									<td class='Boardlabel'>
+										Случайная музыка
+									</td>
+								</tr>
+							</table>
+							<table class='BoardTable'>
+								<div class="wrapper-line wrapper-line_black">
+									<a href="{{rand_music.url}}"
+											class="jouele jouele-skin-dark">
+										{{rand_music.name}}
+									</a>
+								</div>
+							</table>
+						</div>
+					</div>
+					{% endif %}
+					
+					{% if rand_video %}
+					<div class='widget'>
+						<div class='Board'>
+							<table class='BoardTable'>
+								<tr>
+									<td class='Boardlabel'>
+										Случайное видео
+									</td>
+								</tr>
+							</table>
+							<table class='BoardTable'>
+								<iframe src="{{rand_video.url}}" frameborder="0" allowfullscreen></iframe>
+							</table>
+						</div>
+					</div>
+					{% endif %}
+				</td>
+			</tr>
+		</table>
+		
+		
+		<div class='Board'>
+		
+		</div>
+		
+	</div>
+
+{% endblock %}

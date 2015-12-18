@@ -1,0 +1,12 @@
+pyramid
+pyramid_chameleon
+pyramid_debugtoolbar
+pyramid_tm
+pyramid_sacrud
+SQLAlchemy
+WTForms
+webhelpers2
+passlib
+transaction
+zope.sqlalchemy
+waitress

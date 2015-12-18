@@ -1,0 +1,58 @@
+{% extends "aura:templates/layout.jinja2" %}
+
+{% block content %}
+
+<div id="header">
+
+	<div class="title">
+		<a href="/" class="title-link">АУРА</a>
+	</div>
+	<img class="logo" src="{{ request.static_url('aura:static/pyramid.png') }}"
+		alt="logo"/>
+
+	<hr/>
+
+</div>
+	
+<div class='blog'>
+
+	<div class="sub-title">Регистрация</div>
+	<hr width='40%'/>
+
+	<div class='Board'>
+
+		<form action="{{request.route_url('registration')}}" method="post" class="Board'\">
+
+			{% for error in form.username.errors %}
+			<div class="error">{{ error }}</div>
+			{% endfor %}
+
+			<div class="Boardlabel">
+				<label for="title">{{form.username.label}}</label>
+				{{form.username(class_='form-control registration')}}
+			</div>
+
+			{% for error in form.password.errors %}
+			<div class="error">{{error}}</div>
+			{% endfor %}
+
+			<div class="Boardlabel">
+				<label for="body">{{form.password.label}}</label>
+				{{form.password(class_='form-control registration')}}
+			</div>
+			<div class="Boardlabel">
+				<button type="submit" class="btn btn-default">Подтвердить</button>
+			</div>
+
+		</form>
+
+	</div>
+	
+	<p>
+		<a class='blog-link' href="{{request.route_url('home')}}">Назад</a>
+	</p>
+	
+</div>
+{% endblock %}
+	
+		
